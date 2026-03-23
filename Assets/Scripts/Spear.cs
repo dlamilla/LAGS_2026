@@ -44,6 +44,11 @@ public class Spear : MonoBehaviour
             {
                 if (!fishBuffer.Contains(fish))
                 {
+                    if(fish.transform.TryGetComponent<Fish>(out var f))
+                    {
+                        f.isCaptured = true;
+                    }
+
                     fishBuffer.Add(fish);
                     fish.transform.SetParent(transform);
                 }
@@ -59,7 +64,7 @@ public class Spear : MonoBehaviour
 
         elapsedTime = 0;
         duration = .3f;
-
+        
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
