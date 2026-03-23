@@ -46,7 +46,7 @@ public class Spear : MonoBehaviour
                 {
                     if(fish.transform.TryGetComponent<Fish>(out var f))
                     {
-                        f.isCaptured = true;
+                        f.FishCaptured();
                     }
 
                     fishBuffer.Add(fish);

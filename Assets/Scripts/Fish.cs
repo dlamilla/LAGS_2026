@@ -12,7 +12,12 @@ public class Fish : MonoBehaviour
 
     private Vector3 startPos;
 
-    private CircleCollider2D circleCollider;
+    private CapsuleCollider2D capsuleCollider;
+
+    private void Awake()
+    {
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,9 +28,29 @@ public class Fish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (isCaptured) return;
+        if (isCaptured) return;
 
-        //float yOffset = Mathf.Sin(Time.time * frequency) * distance;
-        //transform.position = startPos + new Vector3(0, yOffset, 0);
+        transform.position += transform.right * data.moveSpeed * Time.deltaTime;
+    }
+
+    public void FishCaptured()
+    {
+        isCaptured = true;
+        capsuleCollider.isTrigger = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if(transform.rotation.y == 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
     }
 }
