@@ -4,13 +4,19 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [Header("Locomotion")]
-    public float moveSpeed;
+    public float maxMoveSpeed;
+    public float currentMoveSpeed;
     public float sinkSpeed;
+    public float originalSinkSpeed;
 
     [Header("Oxigen")]
     public float maxOxigen;
     public float currentOxigen;
     public float consumingOxigenSpeed;
+
+    [Header("Weights")]
+    public float currentWeight;
+    public float maxWeightToLift;
 
     [Header("UI")]
     public Image oxigenBar;
@@ -54,15 +60,28 @@ public class Player : MonoBehaviour
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         ConsumingOxigen();
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            AddWeight(1);
+        }
+
     }
 
     private void FixedUpdate()
     {
-        Vector3 nextPos = transform.position + moveDir * moveSpeed * Time.fixedDeltaTime;
+        Vector3 nextPos = transform.position + moveDir * currentMoveSpeed * Time.fixedDeltaTime;
 
-        if (moveDir == Vector3.zero)
+        if (moveDir == Vector3.zero || currentMoveSpeed == 0)
         {
-            nextPos.y -= sinkSpeed * Time.fixedDeltaTime;
+            if(currentWeight == 0)
+            {
+                nextPos.y -= originalSinkSpeed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                nextPos.y -= sinkSpeed * Time.fixedDeltaTime;
+            }
         }
 
         rb.MovePosition(nextPos);
@@ -74,5 +93,25 @@ public class Player : MonoBehaviour
         currentOxigen -= consumingOxigenSpeed * Time.deltaTime;
 
         oxigenBar.fillAmount = currentOxigen/maxOxigen;
+    }
+
+    public void AddWeight(float weight)
+    {
+
+        if (currentMoveSpeed > 0)
+        {
+            currentMoveSpeed -= weight;
+        }
+
+        if (currentWeight < maxWeightToLift)
+        {
+            currentWeight += weight;
+            sinkSpeed += weight;
+        }
+    }
+
+    public void ReduceWeight(float weight)
+    {
+        sinkSpeed -= weight;
     }
 }
