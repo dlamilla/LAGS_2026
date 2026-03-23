@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     public float currentWeight;
     public float maxWeightToLift;
 
+    [Header("Spear")]
+    public Spear spear;
+
     [Header("UI")]
     public Image oxigenBar;
 
@@ -66,6 +69,11 @@ public class Player : MonoBehaviour
             AddWeight(1);
         }
 
+        if (Input.GetMouseButtonDown(0) && !spear.IsAttackOnCooldown)
+        {
+            spear.ActivateSpearAttack();
+        }
+
     }
 
     private void FixedUpdate()
@@ -87,6 +95,7 @@ public class Player : MonoBehaviour
         rb.MovePosition(nextPos);
         rb.MoveRotation(angle);
     }
+
 
     private void ConsumingOxigen()
     {
