@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spear : MonoBehaviour
 {
+    private Player player;
     public float distance;
 
     [Header("Collision Info")]
@@ -14,6 +15,11 @@ public class Spear : MonoBehaviour
     private readonly HashSet<Collider2D> fishBuffer = new();
 
     public bool IsAttackOnCooldown { get; private set; }
+
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
 
     public void ActivateSpearAttack()
     {
@@ -51,6 +57,7 @@ public class Spear : MonoBehaviour
 
                     fishBuffer.Add(fish);
                     fish.transform.SetParent(transform);
+                    player.AddWeight(f.data.weight);
                 }
             }
 
