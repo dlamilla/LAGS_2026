@@ -13,6 +13,7 @@ public class LowOxigenPP : MonoBehaviour
     public float duration;
 
     private bool firstIntensity;
+    public bool fX_Active;
 
     private Volume volume;
     private Vignette vignette;
@@ -28,19 +29,14 @@ public class LowOxigenPP : MonoBehaviour
         firstIntensity = true;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StartCoroutine(Cor());
-        }
-    }
 
-    IEnumerator Cor()
+    public IEnumerator VignetteFX()
     {
         while (true)
         {
             float elapsedTime = 0;
+
+            fX_Active = true;
 
             if (firstIntensity)
             {

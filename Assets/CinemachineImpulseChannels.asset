@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd3e83ff903afa1499e2f6532947997c, type: 3}
-  m_Name: little fish
-  m_EditorClassIdentifier: Assembly-CSharp::FishData
-  moveSpeed: 7
-  health: 1
-  damage: 0
-  score: 1
-  weight: 3
+  m_Script: {fileID: 11500000, guid: a1728508674789b4e8539a2ad08ebc3f, type: 3}
+  m_Name: CinemachineImpulseChannels
+  m_EditorClassIdentifier: Unity.Cinemachine.Editor::Unity.Cinemachine.Editor.CinemachineImpulseChannels
+  ImpulseChannels:
+  - default
+  - HitFish

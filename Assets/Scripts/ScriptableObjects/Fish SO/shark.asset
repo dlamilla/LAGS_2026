@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3e83ff903afa1499e2f6532947997c, type: 3}
   m_Name: shark
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  moveSpeed: 0
+  moveSpeed: 10
   health: 6
   damage: 2
   score: 5

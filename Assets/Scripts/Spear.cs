@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Spear : MonoBehaviour
 {
     private Player player;
+    public int damage;
     public float distance;
 
     [Header("Collision Info")]
@@ -16,13 +18,17 @@ public class Spear : MonoBehaviour
 
     public bool IsAttackOnCooldown { get; private set; }
 
+    private CinemachineImpulseSource source;
+
     private void Awake()
     {
         player = GetComponentInParent<Player>();
+        source = GetComponent<CinemachineImpulseSource>();
     }
 
     public void ActivateSpearAttack()
     {
+        fishBuffer.Clear();
         StartCoroutine(ThrowSpear());
     }
 
@@ -42,24 +48,7 @@ public class Spear : MonoBehaviour
 
             transform.localPosition = Vector3.Lerp(startPos, endPos, t);
 
-            Vector3 worldOffset = transform.TransformDirection(offset);
-
-            buffer = Physics2D.OverlapBoxAll(transform.position + worldOffset, size, transform.eulerAngles.z, fishMask);
-
-            foreach (var fish in buffer)
-            {
-                if (!fishBuffer.Contains(fish))
-                {
-                    if(fish.transform.TryGetComponent<Fish>(out var f))
-                    {
-                        f.FishCaptured();
-                    }
-
-                    fishBuffer.Add(fish);
-                    fish.transform.SetParent(transform);
-                    player.AddWeight(f.data.weight);
-                }
-            }
+            DetectCollision();
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -85,6 +74,34 @@ public class Spear : MonoBehaviour
         transform.localPosition = startPos;
 
         IsAttackOnCooldown = false;
+    }
+
+    private void DetectCollision()
+    {
+        Vector3 worldOffset = transform.TransformDirection(offset);
+
+        buffer = Physics2D.OverlapBoxAll(transform.position + worldOffset, size, transform.eulerAngles.z, fishMask);
+
+        foreach (var fish in buffer)
+        {
+            if (!fishBuffer.Contains(fish))
+            {
+                fishBuffer.Add(fish);
+
+                if (fish.transform.TryGetComponent<Fish>(out var f))
+                {
+                    f.RecieveHit(damage);
+
+                    if (f.isCaptured)
+                    {
+                        player.AddWeight(f.weight);
+                        fish.transform.SetParent(transform);
+                    }
+                }
+
+                source.GenerateImpulse();
+            }
+        }
     }
 
     private void OnDrawGizmos()

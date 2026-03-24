@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +11,20 @@ public class Player : MonoBehaviour
     public float sinkSpeed;
     public float originalSinkSpeed;
 
+    [Header("Dash")]
+    public float dashSpeed;
+    public float dashDuration;
+    public float dashCooldown;
+    private bool isDashInCooldown;
+    private bool isDashing;
+
+    private Vector2 dashDir;
+
     [Header("Oxigen")]
     public float maxOxigen;
     public float currentOxigen;
     public float consumingOxigenSpeed;
+    public float dashOxigenConsumption;
 
     [Header("Weights")]
     public float currentWeight;
@@ -21,8 +33,10 @@ public class Player : MonoBehaviour
     [Header("Spear")]
     public Spear spear;
 
-    [Header("UI")]
+    [Header("UI Related")]
+    public LowOxigenPP lowOxigen;
     public Image oxigenBar;
+
 
     #region NotShowedInInspector
 
@@ -74,10 +88,26 @@ public class Player : MonoBehaviour
             spear.ActivateSpearAttack();
         }
 
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashInCooldown)
+        {
+            StartCoroutine(Dash());
+        }
+
+        if(currentOxigen <= maxOxigen * 30/100 && !lowOxigen.fX_Active)
+        {
+            StartCoroutine(lowOxigen.VignetteFX());
+        }
     }
 
     private void FixedUpdate()
     {
+        if (isDashing)
+        {
+            rb.linearVelocity = dashDir * dashSpeed;
+            return;
+        }
+
         Vector3 nextPos = transform.position + moveDir * currentMoveSpeed * Time.fixedDeltaTime;
 
         if (moveDir == Vector3.zero || currentMoveSpeed == 0)
@@ -96,12 +126,44 @@ public class Player : MonoBehaviour
         rb.MoveRotation(angle);
     }
 
+    IEnumerator Dash()
+    {
+        isDashInCooldown = true;
+        isDashing = true;
+
+        if(moveDir == Vector3.zero)
+        {
+            dashDir = transform.right;
+        }
+        else
+        {
+            dashDir = moveDir;
+        }
+
+        ConsumeOxigen(dashOxigenConsumption);
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+
+        rb.linearVelocity = Vector2.zero;
+
+        yield return new WaitForSeconds(dashCooldown);
+
+        isDashInCooldown = false;
+    }
+
 
     private void ConsumingOxigen()
     {
         currentOxigen -= consumingOxigenSpeed * Time.deltaTime;
 
         oxigenBar.fillAmount = currentOxigen/maxOxigen;
+    }
+
+    private void ConsumeOxigen(float value)
+    {
+        currentOxigen -= value;
     }
 
     public void AddWeight(float weight)
