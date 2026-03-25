@@ -1,0 +1,646 @@
+fileFormatVersion: 2
+guid: bff7a280ea4147143bf8b7a6f5f6f163
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: bbc29121934425c40bfd7e4c0c721fdf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  multiSpriteImportData: []
+  layeredSpriteImportData:
+  - name: taparrabos
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 784
+      width: 120
+      height: 199
+    spriteID: 5099b7c3193903c428a58f9de915f241
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -304, y: 623}
+    spritePosition: {x: 308, y: 161}
+  - name: antebrazo izquierdo
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 227
+      y: 690
+      width: 176
+      height: 64
+    spriteID: b94a73710c07d844d8ef8cf79dfc9c94
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -342, y: 205}
+    spritePosition: {x: 569, y: 485}
+  - name: brazo izquierdo
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 227
+      y: 762
+      width: 171
+      height: 60
+    spriteID: e8811a2efed2bb547afdb9b3cd2e0892
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -214, y: 282}
+    spritePosition: {x: 441, y: 480}
+  - name: pierrna izquierda
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 227
+      y: 4
+      width: 146
+      height: 326
+    spriteID: 6cb1411014aec254a9069b845eda5302
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -145, y: -43}
+    spritePosition: {x: 372, y: 47}
+  - name: pupila
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 431
+      y: 496
+      width: 28
+      height: 23
+    spriteID: ecb6ec3343608d7448075e13535d75f9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: -146}
+    spritePosition: {x: 350, y: 642}
+  - name: ojo
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 411
+      y: 690
+      width: 91
+      height: 54
+    spriteID: 6966fe70cfcadb8468362d380a41678c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 411, y: 690}
+    spritePosition: {x: 323, y: 627}
+  - name: oreja
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 381
+      y: 4
+      width: 92
+      height: 152
+    spriteID: fe645a56aa8b0cd419daecbace1572b5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -8, y: -640}
+    spritePosition: {x: 389, y: 644}
+  - name: head
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 227
+      y: 338
+      width: 249
+      height: 150
+    spriteID: f0e00cc35bd9f9e43aeb2b45ab43d16b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 9, y: -215}
+    spritePosition: {x: 218, y: 553}
+  - name: 'pelo '
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 363
+      y: 576
+      width: 86
+      height: 88
+    spriteID: 8fc347ffdb0da6d45aa35e599cabdd90
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: -104}
+    spritePosition: {x: 334, y: 680}
+  - name: mandibula
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 381
+      y: 164
+      width: 119
+      height: 46
+    spriteID: 99cfdba67d22d4e4caaca99de1b123cd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 125, y: -384}
+    spritePosition: {x: 256, y: 548}
+  - name: cuerpo
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 215
+      height: 442
+    spriteID: 5cf214d9ec8143e4ab7a1c293faf45cf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -276, y: -224}
+    spritePosition: {x: 280, y: 228}
+  - name: brazo derecho
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 227
+      y: 830
+      width: 167
+      height: 52
+    spriteID: 45bd565f830cf0f45a5e8cd812d5a4a8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -2, y: 343}
+    spritePosition: {x: 229, y: 487}
+  - name: antebrazo izquierdo
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 227
+      y: 496
+      width: 196
+      height: 72
+    spriteID: 8c25ef5770e3dab40bf83c6df850a9ba
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 25}
+    spritePosition: {x: 101, y: 471}
+  - name: 'pierna izquierda '
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 454
+      width: 150
+      height: 322
+    spriteID: 4b37f30d804d11940b1e604f6eab5a51
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -236, y: 384}
+    spritePosition: {x: 240, y: 70}
+  - name: 'cola '
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 227
+      y: 576
+      width: 128
+      height: 106
+    spriteID: e17cf8e99f1c0d7488a1b8a4e45aed68
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -205, y: 242}
+    spritePosition: {x: 432, y: 334}
+  spriteImportData: []
+  rigSpriteImportData: []
+  sharedRigSpriteImportData: []
+  mosaicSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  generateTileAssets: 0
+  tilePaletteCellLayout: 0
+  tilePaletteHexagonLayout: 0
+  tilePaletteCellSize: {x: 1, y: 1, z: 0}
+  tilePaletteCellSizing: 0
+  transparencySortMode: 0
+  transparencySortAxis: {x: 0, y: 0, z: 1}
+  tileTemplate: {instanceID: 0}
+  padding: 4
+  spriteSizeExpand: 0
+  skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  pSDLayerImportSetting: []
+  psdLayers:
+  - name: taparrabos
+    spriteName: taparrabos
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5099b7c3193903c428a58f9de915f241
+    layerID: 18
+    mosaicPosition: {x: 4, y: 784}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: antebrazo izquierdo
+    spriteName: antebrazo izquierdo
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b94a73710c07d844d8ef8cf79dfc9c94
+    layerID: 17
+    mosaicPosition: {x: 227, y: 690}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: brazo izquierdo
+    spriteName: brazo izquierdo
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e8811a2efed2bb547afdb9b3cd2e0892
+    layerID: 16
+    mosaicPosition: {x: 227, y: 762}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: pierrna izquierda
+    spriteName: pierrna izquierda
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6cb1411014aec254a9069b845eda5302
+    layerID: 15
+    mosaicPosition: {x: 227, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: pupila
+    spriteName: pupila
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ecb6ec3343608d7448075e13535d75f9
+    layerID: 14
+    mosaicPosition: {x: 431, y: 496}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: ojo
+    spriteName: ojo
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6966fe70cfcadb8468362d380a41678c
+    layerID: 12
+    mosaicPosition: {x: 411, y: 690}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: oreja
+    spriteName: oreja
+    isGroup: 0
+    parentIndex: -1
+    spriteID: fe645a56aa8b0cd419daecbace1572b5
+    layerID: 11
+    mosaicPosition: {x: 381, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: head
+    spriteName: head
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f0e00cc35bd9f9e43aeb2b45ab43d16b
+    layerID: 10
+    mosaicPosition: {x: 227, y: 338}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 'pelo '
+    spriteName: 'pelo '
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8fc347ffdb0da6d45aa35e599cabdd90
+    layerID: 9
+    mosaicPosition: {x: 363, y: 576}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: mandibula
+    spriteName: mandibula
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 99cfdba67d22d4e4caaca99de1b123cd
+    layerID: 8
+    mosaicPosition: {x: 381, y: 164}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: cuerpo
+    spriteName: cuerpo
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5cf214d9ec8143e4ab7a1c293faf45cf
+    layerID: 7
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: brazo derecho
+    spriteName: brazo derecho
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 45bd565f830cf0f45a5e8cd812d5a4a8
+    layerID: 6
+    mosaicPosition: {x: 227, y: 830}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: antebrazo izquierdo
+    spriteName: antebrazo izquierdo
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8c25ef5770e3dab40bf83c6df850a9ba
+    layerID: 5
+    mosaicPosition: {x: 227, y: 496}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 'pierna izquierda '
+    spriteName: 'pierna izquierda '
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 4b37f30d804d11940b1e604f6eab5a51
+    layerID: 4
+    mosaicPosition: {x: 4, y: 454}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 'cola '
+    spriteName: 'cola '
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e17cf8e99f1c0d7488a1b8a4e45aed68
+    layerID: 3
+    mosaicPosition: {x: 227, y: 576}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Layer 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3d761bee87c88544ab9ef9429dbc5943
+    layerID: 2
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  mosaicPSDLayers: []
+  rigPSDLayers: []
+  sharedRigPSDLayers: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []

@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
         }
 
         rb.MovePosition(nextPos);
-        rb.MoveRotation(angle);
+        //rb.MoveRotation(angle);
     }
 
     IEnumerator Dash()
