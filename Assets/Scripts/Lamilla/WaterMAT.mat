@@ -59,14 +59,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _BodyTransparency: 0
-    - _CausticOffsetSpeed: 1
-    - _CausticPower: 9.5
-    - _CausticScale: 2
+    - _CausticOffsetSpeed: 7
+    - _CausticPower: 5
+    - _CausticScale: 7
     - _CausticStrength: 0.08
-    - _DistortionScale: 30
+    - _DistortionScale: 35.6
     - _DistortionStrength: 0.0025
     - _DistotionOffsetSpeed: 1
-    - _LineLength: 0.995
+    - _LineLength: 0.998
     - _WaveCount: 0.75
     - _WaveFlowDirection: 1
     - _WaveSize: 0.16
