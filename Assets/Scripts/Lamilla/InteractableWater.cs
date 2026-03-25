@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(EdgeCollider2D))]
-[RequireComponent(typeof(WaterTriggerHandler))]
 public class InteractableWater : MonoBehaviour
 {
     [Header("Mesh Generation")]
