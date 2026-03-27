@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
 
     private Vector2 dashDir;
 
+    [Header("General")]
+    public bool gotHit;
+
     [Header("Oxigen")]
     public float maxOxigen;
     public float currentOxigen;
@@ -77,11 +80,6 @@ public class Player : MonoBehaviour
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         ConsumingOxigen();
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            AddWeight(1);
-        }
 
         if (Input.GetMouseButtonDown(0) && !spear.IsAttackOnCooldown)
         {
@@ -161,7 +159,7 @@ public class Player : MonoBehaviour
         oxigenBar.fillAmount = currentOxigen/maxOxigen;
     }
 
-    private void ConsumeOxigen(float value)
+    public void ConsumeOxigen(float value)
     {
         currentOxigen -= value;
     }
@@ -184,5 +182,19 @@ public class Player : MonoBehaviour
     public void ReduceWeight(float weight)
     {
         sinkSpeed -= weight;
+    }
+
+    public void RecieveHit(float damage)
+    {
+        ConsumeOxigen(damage);
+        if (!gotHit) StartCoroutine(ResetCor());
+    }
+
+    IEnumerator ResetCor()
+    {
+        gotHit = true;
+        yield return new WaitForSeconds(2);
+
+        gotHit = false;
     }
 }

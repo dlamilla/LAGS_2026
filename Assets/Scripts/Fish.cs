@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class Fish : MonoBehaviour
 {
@@ -6,16 +9,24 @@ public class Fish : MonoBehaviour
 
     [Header("General")]
     public float moveSpeed;
+    private float originalMoveSpeed;
     [Space]
     public int health;
     public int damage;
     public int score;
     public int weight;
+    [Space]
+    public bool isFacingRight;
+
+    [Header("Reaction")]
+    [Tooltip("Se asustará?")]
+    public bool canBeFrightened;
+    public float scaredDuration;
 
     [Header("Detection")]
     public float visionAngle;
     public float visionRange;
-    public Vector3 offset;
+    public Vector3 detectionOffset;
     public bool playerInSight;
     [Space]
     public float secondVisionAngle;
@@ -23,25 +34,34 @@ public class Fish : MonoBehaviour
 
     public bool isCaptured;
 
-    private Vector3 startPos;
-
-    private Collider2D coll;
+    protected Collider2D coll;
 
     private void Awake()
     {
         coll = GetComponent<Collider2D>();
+
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        startPos = transform.position;
+        originalMoveSpeed = moveSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
+    {
+        EventBus.OnFishCapturedEvent += GotScared;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnFishCapturedEvent -= GotScared;
+    }
+
+    protected virtual void Update()
     {
         if (isCaptured) return;
+
+        isFacingRight = transform.right.x > 0;
 
         transform.position += transform.right * moveSpeed * Time.deltaTime;
 
@@ -55,6 +75,7 @@ public class Fish : MonoBehaviour
         if(health <= 0)
         {
             FishCaptured();
+            EventBus.OnFishCaptured();
         }
     }
 
@@ -65,9 +86,9 @@ public class Fish : MonoBehaviour
         coll.enabled = false;
     }
 
-    private void DetectPlayer()
+    protected void DetectPlayer()
     {
-        Vector3 origin = transform.position + transform.TransformDirection(offset);
+        Vector3 origin = transform.position + transform.TransformDirection(detectionOffset);
         Vector2 toPlayer = player.position - origin;
         float sqrMagnitude = toPlayer.sqrMagnitude;
         float sqrRange = visionRange * visionRange;
@@ -77,7 +98,7 @@ public class Fish : MonoBehaviour
         if (sqrMagnitude <= sqrRange && angle <= visionAngle)
         {
             playerInSight = true;
-            Debug.Log(angle);
+            //Debug.Log(angle);
             return;
         }
         else
@@ -93,13 +114,33 @@ public class Fish : MonoBehaviour
         {
             playerInSight = true;
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
         }
         else
         {
             playerInSight = false;
         }
 
+    }
+
+    public void GotScared()
+    {
+        if (!canBeFrightened) return;
+        StartCoroutine(GotScaredCor());
+    }
+
+    IEnumerator GotScaredCor()
+    {
+        float elapsedTime = 0;
+
+        while(elapsedTime < scaredDuration)
+        {
+            moveSpeed = Mathf.Lerp(18, originalMoveSpeed, elapsedTime / scaredDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        moveSpeed = originalMoveSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -121,7 +162,7 @@ public class Fish : MonoBehaviour
     {
         Gizmos.color = Color.green;
 
-        Vector3 worldOffset = transform.TransformDirection(offset);
+        Vector3 worldOffset = transform.TransformDirection(detectionOffset);
 
         Vector3 rightAngle = Quaternion.Euler(0, 0, visionAngle) * transform.right;
 
