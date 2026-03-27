@@ -14,8 +14,8 @@ TagManager:
   - UI
   - Fish
   - DistortionEffect
-  - 
-  - 
+  - WaterSystem_Water
+  - WaterSystem_Reflections
   - 
   - 
   - 
@@ -39,11 +39,32 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: SkyBox
+    uniqueID: 932164473
+    locked: 0
+  - name: Background_2
+    uniqueID: 3458353993
+    locked: 0
+  - name: Background_2_FOG
+    uniqueID: 2155068855
+    locked: 0
+  - name: Background_1
+    uniqueID: 1250154419
+    locked: 0
+  - name: Background_1_FOG
+    uniqueID: 2329424147
+    locked: 0
+  - name: MidGroung
+    uniqueID: 2024295723
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: SortingTexture
+  - name: WaterTopMesh
     uniqueID: 875935749
+    locked: 0
+  - name: WaterFrontMesh
+    uniqueID: 2067825651
     locked: 0
   m_RenderingLayers:
   - Default
