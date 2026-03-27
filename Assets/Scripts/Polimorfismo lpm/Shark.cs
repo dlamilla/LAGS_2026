@@ -7,19 +7,19 @@ public class Shark : Fish
     [Header("Attack")]
     public float distanceToAttack;
     public bool isAttacking;
+    private bool attackStarted;
+    private Vector3 attackDir;
 
     [Header("Splines")]
     public SplineAnimate splineAttack;
     public SplineContainer splineContainer;
     public SplineAnimate splineEvade;
-    public Transform splineContainerOrigin;
-    public Vector3 offset;
+
     [Space]
     public BoxCollider2D attackCollider;
 
     protected override void Update()
     {
-
         if(splineAttack != null)
         {
             if (splineAttack.enabled)
@@ -37,7 +37,6 @@ public class Shark : Fish
 
         base.Update();
 
-
         if (playerInSight)
         {
             LookAtPlayer();
@@ -48,7 +47,6 @@ public class Shark : Fish
             }
         }
 
-        
     }
 
     private void LookAtPlayer()
@@ -95,10 +93,12 @@ public class Shark : Fish
 
         transform.position = endPos;
 
+        attackDir = (player.position- transform.position).normalized; 
+
         elapsedTime = 0;
         duration = .4f;
         startPos = transform.position;
-        endPos = transform.position + transform.right * distanceToAttack;
+        endPos = transform.position + attackDir * distanceToAttack;
 
         attackCollider.enabled = true;
         coll.isTrigger = true;
@@ -110,8 +110,6 @@ public class Shark : Fish
             yield return null;
         }
 
-        splineContainer.transform.localRotation = splineContainerOrigin.transform.localRotation;
-
         splineAttack.Container = splineContainer;
         splineContainer.transform.SetParent(null);
         attackCollider.enabled = false;
@@ -120,13 +118,17 @@ public class Shark : Fish
         splineAttack.Play();
 
         yield return new WaitUntil(() => !splineAttack.IsPlaying);
+
         coll.isTrigger = false;
         splineContainer.transform.SetParent(transform);
         splineAttack.Container = null;
         splineAttack.NormalizedTime = 0;
-        splineContainer.transform.position = splineContainerOrigin.transform.position + offset;
+
+        splineContainer.transform.localPosition = new Vector3(7.25f, .55f, 0);
         splineContainer.transform.rotation = transform.rotation;
+
         isAttacking = false;
+
 
         if (!playerInSight)
         {
