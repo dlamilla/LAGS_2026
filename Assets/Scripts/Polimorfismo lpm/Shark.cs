@@ -9,6 +9,7 @@ public class Shark : Fish
     public bool isAttacking;
     private bool attackStarted;
     private Vector3 attackDir;
+    private Vector3 lastPlayerPos;
 
     [Header("Splines")]
     public SplineAnimate splineAttack;
@@ -35,11 +36,18 @@ public class Shark : Fish
             }
         }
 
+
+        if (attackStarted)
+        {
+            LookAtTarget(lastPlayerPos);
+            return;
+        }
+
         base.Update();
 
         if (playerInSight)
         {
-            LookAtPlayer();
+            LookAtTarget(player.position);
 
             if (InRangeToAttack(distanceToAttack) && !isAttacking)
             {
@@ -49,9 +57,9 @@ public class Shark : Fish
 
     }
 
-    private void LookAtPlayer()
+    private void LookAtTarget(Vector3 target)
     {
-        Vector3 toPlayer = player.position - transform.position;
+        Vector3 toPlayer = target - transform.position;
         float angle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -93,7 +101,8 @@ public class Shark : Fish
 
         transform.position = endPos;
 
-        attackDir = (player.position- transform.position).normalized; 
+        lastPlayerPos = player.position;
+        attackDir = (lastPlayerPos - transform.position).normalized; 
 
         elapsedTime = 0;
         duration = .4f;
@@ -102,6 +111,7 @@ public class Shark : Fish
 
         attackCollider.enabled = true;
         coll.isTrigger = true;
+
 
         while (elapsedTime < duration)
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -81,6 +82,8 @@ public class Fish : MonoBehaviour
 
     public void FishCaptured()
     {
+        if (isCaptured) return;
+
         isCaptured = true;
         coll.isTrigger = true;
         coll.enabled = false;
