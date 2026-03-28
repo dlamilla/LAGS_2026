@@ -468,7 +468,7 @@ ScriptedImporter:
         rgba: 4278255360
     - name: bone_4
       guid: 546a5683ba4ae3e428303c4b2bb45dbe
-      position: {x: 275.70343, y: -0.00012164106, z: 0}
+      position: {x: 275.70346, y: -0.00015299465, z: 0}
       rotation: {x: 0, y: 0, z: -0.020079074, w: 0.9997985}
       length: 177.74583
       parentId: 1
@@ -1282,7 +1282,7 @@ ScriptedImporter:
         rgba: 4278255360
     - name: bone_4
       guid: 546a5683ba4ae3e428303c4b2bb45dbe
-      position: {x: 275.7034, y: -0.00007029864, z: 0}
+      position: {x: 275.7034, y: -0.00010076453, z: 0}
       rotation: {x: 0, y: 0, z: -0.020079074, w: 0.9997985}
       length: 177.74583
       parentId: 2
@@ -1319,13 +1319,13 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     boneReadOnly: 0
   platformSettings: []
   mosaicLayers: 1
   characterMode: 1
-  documentPivot: {x: 0.5, y: 0}
-  documentAlignment: 7
+  documentPivot: {x: 0.5, y: 0.5}
+  documentAlignment: 0
   importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0

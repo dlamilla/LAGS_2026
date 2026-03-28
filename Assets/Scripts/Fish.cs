@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
-using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class Fish : MonoBehaviour
 {
     public Transform player;
+    public string deadAnimationName;
+    private Animator anim;
 
     [Header("General")]
     public float moveSpeed;
@@ -22,6 +23,7 @@ public class Fish : MonoBehaviour
     [Header("Reaction")]
     [Tooltip("Se asustará?")]
     public bool canBeFrightened;
+    public float scaredSpeed;
     public float scaredDuration;
 
     [Header("Detection")]
@@ -40,7 +42,7 @@ public class Fish : MonoBehaviour
     private void Awake()
     {
         coll = GetComponent<Collider2D>();
-
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -87,6 +89,11 @@ public class Fish : MonoBehaviour
         isCaptured = true;
         coll.isTrigger = true;
         coll.enabled = false;
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName(deadAnimationName))
+        {
+            anim.Play(deadAnimationName);
+        }
     }
 
     protected void DetectPlayer()
@@ -138,7 +145,7 @@ public class Fish : MonoBehaviour
 
         while(elapsedTime < scaredDuration)
         {
-            moveSpeed = Mathf.Lerp(18, originalMoveSpeed, elapsedTime / scaredDuration);
+            moveSpeed = Mathf.Lerp(scaredSpeed, originalMoveSpeed, elapsedTime / scaredDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
