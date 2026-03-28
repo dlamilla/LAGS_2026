@@ -1,0 +1,196 @@
+using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Splines;
+
+public class Fish : MonoBehaviour
+{
+    public Transform player;
+    public string deadAnimationName;
+    private Animator anim;
+
+    [Header("General")]
+    public float moveSpeed;
+    private float originalMoveSpeed;
+    [Space]
+    public int health;
+    public int damage;
+    public int score;
+    public int weight;
+    [Space]
+    public bool isFacingRight;
+
+    [Header("Reaction")]
+    [Tooltip("Se asustará?")]
+    public bool canBeFrightened;
+    public float scaredSpeed;
+    public float scaredDuration;
+
+    [Header("Detection")]
+    public float visionAngle;
+    public float visionRange;
+    public Vector3 detectionOffset;
+    public bool playerInSight;
+    [Space]
+    public float secondVisionAngle;
+    public float secondVisionRange;
+
+    public bool isCaptured;
+
+    protected Collider2D coll;
+
+    private void Awake()
+    {
+        coll = GetComponent<Collider2D>();
+        anim = GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        originalMoveSpeed = moveSpeed;
+    }
+
+    private void OnEnable()
+    {
+        EventBus.OnFishCapturedEvent += GotScared;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnFishCapturedEvent -= GotScared;
+    }
+
+    protected virtual void Update()
+    {
+        if (isCaptured) return;
+
+        isFacingRight = transform.right.x > 0;
+
+        transform.position += transform.right * moveSpeed * Time.deltaTime;
+
+        DetectPlayer();
+    }
+
+    public void RecieveHit(int damage)
+    {
+        health -= damage;
+
+        if(health <= 0)
+        {
+            FishCaptured();
+            EventBus.OnFishCaptured();
+        }
+    }
+
+    public void FishCaptured()
+    {
+        if (isCaptured) return;
+
+        isCaptured = true;
+        coll.isTrigger = true;
+        coll.enabled = false;
+
+        gameObject.SetActive(false);
+
+        //if (!anim.GetCurrentAnimatorStateInfo(0).IsName(deadAnimationName))
+        //{
+        //    anim.Play(deadAnimationName);
+        //}
+    }
+
+    protected void DetectPlayer()
+    {
+        Vector3 origin = transform.position + transform.TransformDirection(detectionOffset);
+        Vector2 toPlayer = player.position - origin;
+        float sqrMagnitude = toPlayer.sqrMagnitude;
+        float sqrRange = visionRange * visionRange;
+
+        float angle = Vector2.Angle(transform.right, toPlayer.normalized);
+
+        if (sqrMagnitude <= sqrRange && angle <= visionAngle)
+        {
+            playerInSight = true;
+            return;
+        }
+        else
+        {
+            playerInSight = false;
+        }
+
+        float sqrSecondRange = secondVisionRange * secondVisionRange;
+
+        float secondAngle = Vector2.Angle(transform.right, toPlayer.normalized);
+
+        if (sqrMagnitude <= sqrSecondRange && secondAngle <= secondVisionAngle)
+        {
+            playerInSight = true;
+        }
+        else
+        {
+            playerInSight = false;
+        }
+
+    }
+
+    public void GotScared()
+    {
+        if (!canBeFrightened) return;
+        StartCoroutine(GotScaredCor());
+    }
+
+    IEnumerator GotScaredCor()
+    {
+        float elapsedTime = 0;
+
+        while(elapsedTime < scaredDuration)
+        {
+            moveSpeed = Mathf.Lerp(scaredSpeed, originalMoveSpeed, elapsedTime / scaredDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        moveSpeed = originalMoveSpeed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if(isFacingRight)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        Vector3 worldOffset = transform.TransformDirection(detectionOffset);
+
+        Vector3 rightAngle = Quaternion.Euler(0, 0, visionAngle) * transform.right;
+
+        Gizmos.DrawLine(transform.position + worldOffset, transform.position + worldOffset + rightAngle * visionRange);
+
+        Vector3 leftAngle = Quaternion.Euler(0, 0, -visionAngle) * transform.right;
+
+        Gizmos.DrawLine(transform.position + worldOffset, transform.position + worldOffset + leftAngle * visionRange);
+
+        Gizmos.color = Color.red;
+
+        Vector3 secondRightAngle = Quaternion.Euler(0, 0, secondVisionAngle) * transform.right;
+
+        Gizmos.DrawLine(transform.position + worldOffset, transform.position + worldOffset + secondRightAngle * secondVisionRange);
+
+        Vector3 secondLeftAngle = Quaternion.Euler(0, 0, -secondVisionAngle) * transform.right;
+
+        Gizmos.DrawLine(transform.position + worldOffset, transform.position + worldOffset + secondLeftAngle * secondVisionRange);
+
+        Vector2 toPlayer = player.position - transform.position;
+    }
+}
