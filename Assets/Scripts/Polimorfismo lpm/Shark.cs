@@ -11,6 +11,13 @@ public class Shark : Fish
     private Vector3 attackDir;
     private Vector3 lastPlayerPos;
 
+    [Header("DetectWall")]
+    public Vector3 offset;
+    public Vector3 boxSize;
+    public float boxAngle;
+    public float boxDistance;
+    public LayerMask wallLayer;
+
     [Header("Splines")]
     public SplineAnimate splineAttack;
     public SplineContainer splineContainer;
@@ -29,6 +36,22 @@ public class Shark : Fish
                 {
                     isFacingRight = transform.right.x > 0;
                     DetectPlayer();
+
+                    RaycastHit2D hit = Physics2D.BoxCast(transform.position + offset, boxSize, boxAngle ,transform.right, boxDistance, wallLayer);
+
+                    if (hit)
+                    {
+                        Debug.Log("called");
+                        splineAttack.Pause();
+                        if (isFacingRight)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 180, 0);
+                        }
+                        else
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, 0);
+                        }
+                    }
                     return;
                 }
 

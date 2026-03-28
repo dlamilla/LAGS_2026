@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OxigenBubbles : MonoBehaviour
+public class OxigenBubbles_UI : MonoBehaviour
 {
     [SerializeField] private Image oxygenBar;
     [SerializeField] private RectTransform barRect;

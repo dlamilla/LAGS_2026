@@ -108,7 +108,6 @@ public class Fish : MonoBehaviour
         if (sqrMagnitude <= sqrRange && angle <= visionAngle)
         {
             playerInSight = true;
-            //Debug.Log(angle);
             return;
         }
         else
@@ -123,8 +122,6 @@ public class Fish : MonoBehaviour
         if (sqrMagnitude <= sqrSecondRange && secondAngle <= secondVisionAngle)
         {
             playerInSight = true;
-
-            //Debug.Log(angle);
         }
         else
         {
@@ -157,7 +154,7 @@ public class Fish : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            if(transform.rotation.y == 0)
+            if(isFacingRight)
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }

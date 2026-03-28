@@ -151,6 +151,14 @@ public class Player : MonoBehaviour
         isDashInCooldown = false;
     }
 
+    public void AddOxigen(float amount)
+    {
+        currentOxigen += amount;
+        if(currentOxigen > maxOxigen)
+        {
+            currentOxigen = maxOxigen;
+        }
+    }
 
     private void ConsumingOxigen()
     {
