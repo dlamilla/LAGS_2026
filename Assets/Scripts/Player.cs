@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public bool useMouse;
     [Header("Locomotion")]
     public float maxMoveSpeed;
     public float currentMoveSpeed;
@@ -73,17 +74,22 @@ public class Player : MonoBehaviour
 
         moveDir = new Vector3(xInput, yInput, 0).normalized;
 
-        Vector3 mousePos = main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = transform.position.z;
-
-        Vector2 dir = mousePos - transform.position;
-        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (useMouse)
+        {
+            
+        }
+        
 
         ConsumingOxigen();
 
         if (Input.GetMouseButtonDown(0) && !spear.IsAttackOnCooldown)
         {
             spear.ActivateSpearAttack();
+            Vector3 mousePos = main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = transform.position.z;
+
+            Vector2 dir = mousePos - transform.position;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         }
 
 

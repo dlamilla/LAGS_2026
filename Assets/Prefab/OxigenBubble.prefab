@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9d2272e7527d141a1af4fab932544e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OxygenBubble
-  lifespanValues: {x: 10, y: 14}
+  lifespanValues: {x: 12, y: 16}
   lifespan: 0
   oxygenGiven: 5
   elevateSpeed: 5
