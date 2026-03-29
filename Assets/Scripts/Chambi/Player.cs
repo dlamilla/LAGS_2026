@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Ship ship;
-    public Clock clock;
+    //ublic Clock clock;
     public WeightCounter weightCounter;
     public FishCounter fishCounter;
 
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (hasWon || clock.outOfTime)
+        if (hasWon)
         {
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {
