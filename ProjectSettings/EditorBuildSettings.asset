@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ef5eeb86dafdbe443a4d9e43f7cd0603
   - enabled: 1
-    path: Assets/Scenes/Lamilla.unity
-    guid: 647d1ec81e433b046a5696baebb2008b
-  - enabled: 1
     path: Assets/Scenes/Demo_WithLighting/EscenaFinal.unity
     guid: 03aee4bdbf2dc1a4ead003daa657c7d8
   - enabled: 1

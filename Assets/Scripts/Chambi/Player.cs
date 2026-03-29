@@ -245,9 +245,11 @@ public class Player : MonoBehaviour
 
     public void StoreFish()
     {
+        currentWeight = 0;
         currentMoveSpeed = maxMoveSpeed;
         sinkSpeed = originalSinkSpeed;
         Bag.instance.RemoveFish();
+        weightCounter.UpdateUI();
     }
 
     public void RecieveHit(float damage)
