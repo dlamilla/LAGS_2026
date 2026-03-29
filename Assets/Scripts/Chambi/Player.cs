@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
     [Header("HitBox")]
     public PlayerHitBox hitBox;
+    public Spear spear;
 
     [Header("UI Related")]
     public LowOxigenPP lowOxigen;
@@ -67,11 +68,22 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isDead || hasWon)
+        if (isDead)
         {
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
             {
                 anim.Play("Death");
+            }
+
+            MoveDir = Vector3.zero;
+            return;
+        }
+
+        if (hasWon)
+        {
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                anim.Play("Idle");
             }
 
             MoveDir = Vector3.zero;
@@ -92,7 +104,7 @@ public class Player : MonoBehaviour
             isDead = true;
         }
 
-        if (Input.GetMouseButtonDown(0) && !hitBox.IsAttackOnCooldown)
+        if (Input.GetMouseButtonDown(0) && !spear.IsAttackOnCooldown)
         {
             anim.Play("Attack");
         }

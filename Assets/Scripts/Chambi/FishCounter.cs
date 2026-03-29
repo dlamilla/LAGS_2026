@@ -4,8 +4,8 @@ using UnityEngine;
 public class FishCounter : MonoBehaviour
 {
     public Player player;
-    [SerializeField] private int maxFish; 
-    private int currentFish = 0;
+    public int maxFish; 
+    public int currentFish = 0;
 
     private TextMeshProUGUI counterText;
 

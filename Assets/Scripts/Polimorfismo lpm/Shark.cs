@@ -70,7 +70,7 @@ public class Shark : Fish
 
         if (playerInSight)
         {
-            LookAtTarget(player.position);
+            LookAtTarget(player.transform.position);
 
             if (InRangeToAttack(distanceToAttack) && !isAttacking)
             {
@@ -90,7 +90,7 @@ public class Shark : Fish
 
     private bool InRangeToAttack(float range)
     {
-        Vector3 ToPlayer = player.position - transform.position;
+        Vector3 ToPlayer = player.transform.position - transform.position;
 
         float sqrMagnitude = ToPlayer.sqrMagnitude;
 
@@ -124,7 +124,7 @@ public class Shark : Fish
 
         transform.position = endPos;
 
-        lastPlayerPos = player.position;
+        lastPlayerPos = player.transform.position;
         attackDir = (lastPlayerPos - transform.position).normalized; 
 
         elapsedTime = 0;

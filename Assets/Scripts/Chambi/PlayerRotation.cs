@@ -20,6 +20,27 @@ public class PlayerRotation : MonoBehaviour
     {
         if(player.isDead) return;
 
+        if (player.hasWon)
+        {
+            Vector3 mousePos = main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = transform.position.z;
+            Vector3 dir = mousePos - transform.position;
+
+            float dot = Vector2.Dot(Vector2.right, dir.normalized);
+
+            if (dot < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            return;
+        }
+
         if(player.MoveDir == Vector3.zero)
         {
             if (player.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))

@@ -69,5 +69,8 @@ TagManager:
   - name: WaterFrontMesh
     uniqueID: 3625311227
     locked: 0
+  - name: bubbles
+    uniqueID: 221165015
+    locked: 0
   m_RenderingLayers:
   - Default

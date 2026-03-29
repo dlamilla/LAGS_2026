@@ -81,10 +81,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 37
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.26072446, g: 0.67925364, b: 0.8773585, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e0c3e6c789a72ad439378c9ad785b8ae, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   lifespanValues: {x: 12, y: 16}
   lifespan: 0
   oxygenGiven: 5
-  elevateSpeed: 5
+  elevateSpeed: 10
 --- !u!58 &2232623249584200594
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -143,5 +143,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0.09, y: -0.03}
+  m_Radius: 1.85

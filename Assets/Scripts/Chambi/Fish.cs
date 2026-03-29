@@ -5,7 +5,7 @@ using UnityEngine.Splines;
 
 public class Fish : MonoBehaviour
 {
-    public Transform player;
+    public Player player;
     public string deadAnimationName;
     private Animator anim;
 
@@ -90,18 +90,34 @@ public class Fish : MonoBehaviour
         coll.isTrigger = true;
         coll.enabled = false;
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
 
-        //if (!anim.GetCurrentAnimatorStateInfo(0).IsName(deadAnimationName))
-        //{
-        //    anim.Play(deadAnimationName);
-        //}
+        StartCoroutine(AddFishToBagCor());
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName(deadAnimationName))
+        {
+            anim.Play(deadAnimationName);
+        }
+    }
+
+    IEnumerator AddFishToBagCor()
+    {
+        Debug.Log("called");
+        yield return new WaitForSeconds(2);
+
+        if (player.hasWon)
+        {
+            yield break;
+        }
+        gameObject.transform.SetParent(null);
+        Bag.instance.AddFishToBag(gameObject);
+
     }
 
     protected void DetectPlayer()
     {
         Vector3 origin = transform.position + transform.TransformDirection(detectionOffset);
-        Vector2 toPlayer = player.position - origin;
+        Vector2 toPlayer = player.transform.position - origin;
         float sqrMagnitude = toPlayer.sqrMagnitude;
         float sqrRange = visionRange * visionRange;
 
@@ -191,6 +207,6 @@ public class Fish : MonoBehaviour
 
         Gizmos.DrawLine(transform.position + worldOffset, transform.position + worldOffset + secondLeftAngle * secondVisionRange);
 
-        Vector2 toPlayer = player.position - transform.position;
+        Vector2 toPlayer = player.transform.position - transform.position;
     }
 }
