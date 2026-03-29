@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Ship ship;
     public Clock clock;
     public WeightCounter weightCounter;
+    public FishCounter fishCounter;
 
     [Header("Locomotion")]
     public float maxMoveSpeed;
@@ -245,11 +246,16 @@ public class Player : MonoBehaviour
 
     public void StoreFish()
     {
+        if (!Bag.instance.ThereAreFish) return;
+
+        fishCounter.currentFish += Bag.instance.fishInList;
+
         currentWeight = 0;
         currentMoveSpeed = maxMoveSpeed;
         sinkSpeed = originalSinkSpeed;
         Bag.instance.RemoveFish();
         weightCounter.UpdateUI();
+        fishCounter.UpdateUI();
     }
 
     public void RecieveHit(float damage)

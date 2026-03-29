@@ -4,8 +4,8 @@ using UnityEngine;
 public class FishCounter : MonoBehaviour
 {
     public Player player;
-    public int maxFish; 
-    public int currentFish = 0;
+    public float maxFish; 
+    public float currentFish;
 
     private TextMeshProUGUI counterText;
 
@@ -14,35 +14,36 @@ public class FishCounter : MonoBehaviour
         counterText = GetComponent<TextMeshProUGUI>();
     }
 
-    private void OnEnable()
-    {
-        EventBus.OnFishCapturedEvent += AddFish;
-    }
+    //private void OnEnable()
+    //{
+    //    EventBus.OnFishCapturedEvent += AddFish;
+    //}
 
-    private void OnDisable()
-    {
-        EventBus.OnFishCapturedEvent -= AddFish;
-    }
+    //private void OnDisable()
+    //{
+    //    EventBus.OnFishCapturedEvent -= AddFish;
+    //}
 
     private void Start()
     {
+        currentFish = 0;
         UpdateUI();
     }
 
-    private void AddFish()
-    {
-        currentFish++;
+    //public void AddFish()
+    //{
+    //    currentFish++;
 
-        if (currentFish >= maxFish)
-        {
-            currentFish = maxFish;
-            player.hasWon = true;
-        }
+    //    if (currentFish >= maxFish)
+    //    {
+    //        currentFish = maxFish;
+    //        player.hasWon = true;
+    //    }
 
-        UpdateUI();
-    }
+    //    UpdateUI();
+    //}
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         counterText.text = $"{currentFish}/{maxFish}";
     }

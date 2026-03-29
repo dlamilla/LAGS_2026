@@ -8,6 +8,10 @@ public class Bag : MonoBehaviour
     public List<GameObject> fishList = new List<GameObject>();
     public float radius;
 
+    public bool ThereAreFish => fishList.Count > 0;
+
+    public int fishInList => fishList.Count;
+
     public static Bag instance;
 
     private void Awake()
