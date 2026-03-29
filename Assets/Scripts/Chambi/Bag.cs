@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using UnityEditor;
 using UnityEngine;
 
 public class Bag : MonoBehaviour
@@ -43,9 +42,9 @@ public class Bag : MonoBehaviour
     {
 
 
-        Handles.color = Color.red;
+        //Handles.color = Color.red;
 
-        Handles.DrawWireDisc(transform.position, transform.forward, radius);
+        //Handles.DrawWireDisc(transform.position, transform.forward, radius);
     }
 
 }
