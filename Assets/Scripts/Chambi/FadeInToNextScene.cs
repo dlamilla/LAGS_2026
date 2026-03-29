@@ -6,6 +6,7 @@ public class FadeInToNextScene : MonoBehaviour
 {
     public Player player;
     public FishCounter fishCounter;
+    public Clock clock;
     private CanvasGroup canvasGroup;
 
     bool called;
@@ -23,7 +24,7 @@ public class FadeInToNextScene : MonoBehaviour
             StartCoroutine(Cor("Ganar"));
         }
 
-        if(player.isDead && !called)
+        if((player.isDead || clock.outOfTime) && !called)
         {
             StartCoroutine (Cor("Perder"));
         }

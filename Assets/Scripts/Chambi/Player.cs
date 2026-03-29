@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Ship ship;
+    public Clock clock;
 
     [Header("Locomotion")]
     public float maxMoveSpeed;
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (hasWon)
+        if (hasWon || clock.outOfTime)
         {
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {

@@ -5,6 +5,7 @@ public class Clock : MonoBehaviour
 {
     public float maxTime;
     public float currentTime;
+    public bool outOfTime;
 
     [Header("UI")]
     public Image clockImg;
@@ -20,5 +21,7 @@ public class Clock : MonoBehaviour
         currentTime -= Time.deltaTime;
 
         clockImg.fillAmount = currentTime / maxTime;
+
+        if(currentTime <= 0) outOfTime = true;
     }
 }

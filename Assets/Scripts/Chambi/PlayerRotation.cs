@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
+    public Clock clock;
     private Camera main;
 
     private Player player;
@@ -22,7 +23,7 @@ public class PlayerRotation : MonoBehaviour
     {
         if(player.isDead) return;
 
-        if (player.hasWon)
+        if (player.hasWon || clock.outOfTime)
         {
             if (called) return;
             Vector3 mousePos = main.ScreenToWorldPoint(Input.mousePosition);
