@@ -7,12 +7,14 @@ public class Player : MonoBehaviour
 {
     public Ship ship;
     public Clock clock;
+    public WeightCounter weightCounter;
 
     [Header("Locomotion")]
     public float maxMoveSpeed;
     public float currentMoveSpeed;
     public float sinkSpeed;
     public float originalSinkSpeed;
+    private bool canMove;
 
     [Header("Dash")]
     public float dashSpeed;
@@ -68,6 +70,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentOxigen = maxOxigen;
+        canMove = true;
     }
 
     void Update()
@@ -92,6 +95,12 @@ public class Player : MonoBehaviour
 
             MoveDir = Vector3.zero;
             return;
+        }
+
+        if (currentWeight >= maxWeightToLift)
+        {
+            canMove = false;
+            consumingOxigenSpeed = 5;
         }
 
         xInput = Input.GetAxisRaw("Horizontal");
@@ -133,6 +142,7 @@ public class Player : MonoBehaviour
     {
 
         if (hasWon) return;
+
         if (isDashing)
         {
             rb.linearVelocity = dashDir * dashSpeed;
@@ -141,19 +151,31 @@ public class Player : MonoBehaviour
 
         Vector3 nextPos = transform.position + currentMoveSpeed * Time.fixedDeltaTime * MoveDir;
 
-        if (MoveDir == Vector3.zero || currentMoveSpeed == 0)
+        if (canMove)
         {
-            if(currentWeight == 0)
+            if (MoveDir == Vector3.zero || currentMoveSpeed == 0)
             {
-                nextPos.y -= originalSinkSpeed * Time.fixedDeltaTime;
+                if (currentWeight == 0)
+                {
+                    nextPos.y -= originalSinkSpeed * Time.fixedDeltaTime;
+                }
+                else
+                {
+                    nextPos.y -= sinkSpeed * Time.fixedDeltaTime;
+                }
             }
-            else
-            {
-                nextPos.y -= sinkSpeed * Time.fixedDeltaTime;
-            }
+
+            rb.MovePosition(nextPos);
+        }
+        else
+        {
+            Vector3 down = transform.position + currentMoveSpeed * Time.fixedDeltaTime * -transform.up;
+
+            rb.MovePosition(down);
         }
 
-        rb.MovePosition(nextPos);
+
+
     }
 
     IEnumerator Dash()
@@ -217,6 +239,8 @@ public class Player : MonoBehaviour
             currentWeight += weight;
             sinkSpeed += weight;
         }
+
+        weightCounter.UpdateUI();
     }
 
     public void StoreFish()
