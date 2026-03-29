@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 
 public class Bag : MonoBehaviour
 {
+
+    public List<GameObject> fishList = new List<GameObject>();
     public float radius;
 
     public static Bag instance;
@@ -13,8 +16,20 @@ public class Bag : MonoBehaviour
         instance = this;
     }
 
+    public void RemoveFish()
+    {
+
+        foreach(GameObject fish in fishList)
+        {
+            fish.SetActive(false);
+        }
+
+        fishList.Clear();
+    }
+
     public void AddFishToBag(GameObject fish)
     {
+        fishList.Add(fish);
         fish.transform.SetParent(transform);
 
         Vector2 rnd = Random.insideUnitCircle * radius;

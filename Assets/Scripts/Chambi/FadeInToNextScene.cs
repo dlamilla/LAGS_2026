@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class FadeInToNextScene : MonoBehaviour
 {
+    public Player player;
     public FishCounter fishCounter;
     private CanvasGroup canvasGroup;
 
@@ -19,11 +20,16 @@ public class FadeInToNextScene : MonoBehaviour
     {
         if (fishCounter.currentFish == fishCounter.maxFish && !called)
         {
-            StartCoroutine(Cor());
+            StartCoroutine(Cor("Ganar"));
+        }
+
+        if(player.isDead && !called)
+        {
+            StartCoroutine (Cor("Perder"));
         }
     }
 
-    IEnumerator Cor()
+    IEnumerator Cor(string sceneName)
     {
         called = true;
         float elapsedTime = 0;
@@ -39,6 +45,6 @@ public class FadeInToNextScene : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        SceneManager.LoadScene("Ganar");
+        SceneManager.LoadScene(sceneName);
     }
 }

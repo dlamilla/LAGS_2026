@@ -6,6 +6,8 @@ public class PlayerRotation : MonoBehaviour
 
     private Player player;
 
+    private bool called;
+
     private void Awake()
     {
         player = GetComponentInParent<Player>();
@@ -22,6 +24,7 @@ public class PlayerRotation : MonoBehaviour
 
         if (player.hasWon)
         {
+            if (called) return;
             Vector3 mousePos = main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = transform.position.z;
             Vector3 dir = mousePos - transform.position;
@@ -37,6 +40,7 @@ public class PlayerRotation : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
+            called = true;
 
             return;
         }

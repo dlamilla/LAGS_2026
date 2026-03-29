@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public Ship ship;
+
     [Header("Locomotion")]
     public float maxMoveSpeed;
     public float currentMoveSpeed;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     public bool gotHit;
     public bool isDead;
     public bool hasWon;
+    public bool hasLost;
 
     [Header("Oxigen")]
     public float maxOxigen;
@@ -99,6 +102,11 @@ public class Player : MonoBehaviour
 
         ConsumingOxigen();
 
+        if(Input.GetKeyDown(KeyCode.E) && ship.canReceiveFish)
+        {
+            StoreFish();
+        }
+
         if(currentOxigen <= 0)
         {
             isDead = true;
@@ -122,6 +130,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (hasWon) return;
         if (isDashing)
         {
             rb.linearVelocity = dashDir * dashSpeed;
@@ -208,9 +218,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ReduceWeight(float weight)
+    public void StoreFish()
     {
-        sinkSpeed -= weight;
+        currentMoveSpeed = maxMoveSpeed;
+        sinkSpeed = originalSinkSpeed;
+        Bag.instance.RemoveFish();
     }
 
     public void RecieveHit(float damage)
@@ -255,5 +267,13 @@ public class Player : MonoBehaviour
             anim.Play("Swim");
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Surface"))
+        {
+            currentOxigen = maxOxigen;
+        }
     }
 }
