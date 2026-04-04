@@ -19,7 +19,7 @@ public class FadeInToNextScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fishCounter.currentFish == fishCounter.maxFish && !called)
+        if (fishCounter.currentFish >= fishCounter.maxFish && !called)
         {
             StartCoroutine(Cor("Ganar"));
         }
